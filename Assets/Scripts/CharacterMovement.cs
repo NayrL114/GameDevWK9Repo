@@ -5,15 +5,23 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour {    
     
     public Animator moveAnimator;
-
-    private Vector3 movement;
-    private float movementSqrMagnitude; 
     
+    private Vector3 movement;
+    private float movementSqrMagnitude;
+
+    public AsyncLoader aload;// = gameObject.GetComponent<AsyncLoader>();
 	
-	void Update () {
+	void Start()
+    {
+        //aload = gameObject.GetComponent<AsyncLoader>();
+    }
+    
+    void Update () {
         GetMovementInput();
         CharacterRotation();
         WalkingAnimation();
+        aload.pos = transform.position;
+        //transform.position = aload.pos;
 	}
 
 
