@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour {    
+    
     public Animator moveAnimator;
 
     private Vector3 movement;
@@ -20,7 +21,11 @@ public class CharacterMovement : MonoBehaviour {
         movement.x = Input.GetAxis("Horizontal");
         movement.z = Input.GetAxis("Vertical");
         movement = Vector3.ClampMagnitude(movement, 1.0f);
+        //movement.x = Input.GetAxis("Horizontal") * SpeedManager.SpeedModifier;
+        //movement.z = Input.GetAxis("Vertical") * SpeedManager.SpeedModifier;
+        //movement = Vector3.ClampMagnitude(movement, SpeedManager.SpeedModifier);
         movementSqrMagnitude = movement.sqrMagnitude;
+        //Debug.Log(movementSqrMagnitude);
     }
 
 
@@ -33,5 +38,6 @@ public class CharacterMovement : MonoBehaviour {
 
     void WalkingAnimation() {
         moveAnimator.SetFloat("MoveSpeed", movementSqrMagnitude);
+        moveAnimator.SetFloat("OtherParam", SpeedManager.SpeedModifier);
     }
 }
