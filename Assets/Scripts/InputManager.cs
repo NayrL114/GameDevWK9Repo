@@ -8,11 +8,13 @@ public class InputManager : MonoBehaviour
 
     //public SpeedManager spdm;
     private bool isFast = false;
+    public SaveGameManager sgm;
     
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        sgm = gameObject.GetComponent<SaveGameManager>();
     }
 
     // Update is called once per frame
@@ -23,6 +25,8 @@ public class InputManager : MonoBehaviour
         {
             SpeedManager.CurrentSpeedState = (isFast) ? SpeedManager.GameSpeed.Slow : SpeedManager.GameSpeed.Fast;
             isFast = !isFast;
+            //SaveGameManager.SaveSpeed();
+            sgm.SaveSpeed();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && GameManager.currentGameState == GameManager.GameState.Start)
