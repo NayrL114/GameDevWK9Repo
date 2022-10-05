@@ -30,13 +30,17 @@ public class SpeedManager : MonoBehaviour
         {
             if (currentSpeedState == GameSpeed.Fast)
             {
-                currentSpeedState = GameSpeed.Slow;
-                speedModifier = (float)GameSpeed.Slow;
+                //currentSpeedState = GameSpeed.Slow;
+                //speedModifier = (float)GameSpeed.Slow;
+                currentSpeedState = value;
+                speedModifier = (float)value;
             }
             else
             {
-                currentSpeedState = GameSpeed.Fast;
-                speedModifier = (float)GameSpeed.Fast;
+                //currentSpeedState = GameSpeed.Fast;
+                //speedModifier = (float)GameSpeed.Fast;
+                currentSpeedState = value;
+                speedModifier = (float)value;
             }
             
         }

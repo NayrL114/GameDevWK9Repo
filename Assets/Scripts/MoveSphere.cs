@@ -7,7 +7,7 @@ public class MoveSphere : MonoBehaviour
 
     private Vector3 target = new Vector3(-3f, 1f, 0f);
     private float duration = 1.5f;
-    public Tweener twn;
+    [SerializeField] public Tweener twn;
     
     // Start is called before the first frame update
     void Start()
