@@ -7,7 +7,8 @@ public class InputManager : MonoBehaviour
 {
 
     //public SpeedManager spdm;
-    private bool isFast = false;
+    //private bool isFast = false;
+    private bool isFast;
     public SaveGameManager sgm;
     
     // Start is called before the first frame update
@@ -15,12 +16,13 @@ public class InputManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         sgm = gameObject.GetComponent<SaveGameManager>();
+        isFast = (SpeedManager.CurrentSpeedState == SpeedManager.GameSpeed.Fast) ? true : false;
+        //Debug.Log((int)SpeedManager.CurrentSpeedState + " " + isFast);
     }
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SpeedManager.CurrentSpeedState = (isFast) ? SpeedManager.GameSpeed.Slow : SpeedManager.GameSpeed.Fast;
@@ -36,7 +38,6 @@ public class InputManager : MonoBehaviour
             gameObject.GetComponent<Tweener>().enabled = false;
             SceneManager.LoadScene(0);// WalkingScene is identified as scene 0 in the build
             
-        }
-        
+        }        
     }
 }
