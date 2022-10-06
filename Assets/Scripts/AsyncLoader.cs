@@ -7,7 +7,9 @@ public class AsyncLoader : MonoBehaviour
 {
 
     public Vector3 pos;
-    private string activeScene;
+
+    //private string activeScene;
+    //private int activeSceneNumbers;
     private bool loadedRight;
     private bool loadedLeft;
     private bool loadedTop;
@@ -16,81 +18,87 @@ public class AsyncLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // change the code to check through the SceneManager.GetAdtiveScenes array
-        // check the unity programming SceneMananger API
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         activeScene = SceneManager.GetActiveScene().name;
-        Debug.Log(pos.x + " " + pos.z + " " + activeScene);
+        activeSceneNumbers = SceneManager.sceneCount;
+        Debug.Log(pos.x + " " + pos.z + " " + activeScene + " " + activeSceneNumbers);
+        */
         LoadLevelAsync();
     }
 
     public void LoadLevelAsync()
     {
-        if (pos.x > 0.5f)
+        // Top Scene is 2, Bottom Scene is 3, Left Scene is 4, Right Scene is 5
+        if (pos.x > 2.5f)
         {
             if (!loadedRight)
-            //if (!"RightScene".isLoaded)
+            //if (SceneManagement.RightScene.isLoaded)
             {
-                SceneManager.LoadSceneAsync("RightScene", LoadSceneMode.Additive);
+                SceneManager.LoadSceneAsync(5, LoadSceneMode.Additive);
                 loadedRight = true;
             }
 
             if (loadedLeft)
             //if ("LeftScene".isLoaded)
             {
-                SceneManager.UnloadSceneAsync("LeftScene");
+                SceneManager.UnloadSceneAsync(4);
                 loadedLeft = false;
             }
         }
-        else if (pos.x < -0.5f)
+
+        if (pos.x < -2.5f)
         {
             if (!loadedLeft)
             //if (!"RightScene".isLoaded)
             {
-                SceneManager.LoadSceneAsync("LeftScene", LoadSceneMode.Additive);
+                SceneManager.LoadSceneAsync(4, LoadSceneMode.Additive);
                 loadedLeft = true;
             }
 
             if (loadedRight)
             //if ("LeftScene".isLoaded)
             {
-                SceneManager.UnloadSceneAsync("RightScene");
+                SceneManager.UnloadSceneAsync(5);
                 loadedRight = false;
             }
         }
-        else if (pos.z > 0.5f)
+
+        if (pos.z > 2.5f)
         {
             if (!loadedTop)
             //if (!"RightScene".isLoaded)
             {
-                SceneManager.LoadSceneAsync("TopScene", LoadSceneMode.Additive);
+                SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
                 loadedTop = true;
             }
 
             if (loadedBottom)
             //if ("LeftScene".isLoaded)
             {
-                SceneManager.UnloadSceneAsync("BottomScene");
+                SceneManager.UnloadSceneAsync(3);
                 loadedBottom = false;
             }
         }
-        else if (pos.z < -0.5f)
+
+        if (pos.z < -2.5f)
         {
             if (!loadedBottom)
             //if (!"RightScene".isLoaded)
             {
-                SceneManager.LoadSceneAsync("BottomScene", LoadSceneMode.Additive);
+                SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
                 loadedBottom = true;
             }
 
             if (loadedTop)
             //if ("LeftScene".isLoaded)
             {
-                SceneManager.UnloadSceneAsync("TopScene");
+                SceneManager.UnloadSceneAsync(2);
                 loadedTop = false;
             }
         }

@@ -26,6 +26,7 @@ public class SaveGameManager : MonoBehaviour
         if (PlayerPrefs.HasKey("Speed"))
         {
             SpeedManager.CurrentSpeedState = PlayerPrefs.GetInt("Speed") == 1 ? SpeedManager.GameSpeed.Slow : SpeedManager.GameSpeed.Fast;
+            //SpeedManager.CurrentSpeedState = PlayerPrefs.GetInt("Speed");
         }
     }
 }

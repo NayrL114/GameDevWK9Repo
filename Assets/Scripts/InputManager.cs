@@ -29,12 +29,12 @@ public class InputManager : MonoBehaviour
             sgm.SaveSpeed();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && GameManager.currentGameState == GameManager.GameState.Start)
+        if (Input.GetKeyDown(KeyCode.Return) && GameManager.currentGameState == GameManager.GameState.Start)
         {
             //GameManager.currentGameState = GameManager.GameState.Start;
             GameManager.currentGameState = GameManager.GameState.WalkingLevel;
             gameObject.GetComponent<Tweener>().enabled = false;
-            SceneManager.LoadScene("WalkingScene");
+            SceneManager.LoadScene(0);// WalkingScene is identified as scene 0 in the build
             
         }
         
